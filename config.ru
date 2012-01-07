@@ -9,10 +9,11 @@ class RequestIntrospector < Sinatra::Base
   %w{get post put delete head}.each do |http_method|
     eval <<-RUBY
       #{http_method} '*' do
-        "HTTP Method: #{http_method.upcase}\n"  + 
+        resp = "HTTP Method: #{http_method.upcase}\n"  + 
         "Params:      \#{params.inspect}\n" + 
-        "Headers:     \#{headers.inspect}\n" +  
         "Request:     \#{request.inspect}" 
+        content_type 'text/plain'
+        resp
       end
     RUBY
   end
