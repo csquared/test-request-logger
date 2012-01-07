@@ -11,6 +11,7 @@ class RequestIntrospector < Sinatra::Base
       #{http_method} '*' do
         resp = "HTTP Method: #{http_method.upcase}\n"  + 
         "Params:      \#{params.inspect}\n" + 
+        "Headers:     \#{headers.inspect}\n" +  
         "Request:     \#{request.inspect}" 
         content_type 'text/plain'
         resp
