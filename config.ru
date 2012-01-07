@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.require
 require 'sinatra/base'
 
-use Rack::CgiProxy, ENV['REQUEST_LOGGER_URL']
+#use Rack::CgiProxy, ENV['REQUEST_LOGGER_URL']
 
 class RequestIntrospector < Sinatra::Base
   # show ALL the methods!
@@ -10,9 +10,9 @@ class RequestIntrospector < Sinatra::Base
     eval <<-RUBY
       #{http_method} '*' do
         "HTTP Method: #{http_method.upcase}\n"  + 
-        "Params:      #{params.inspect}}\n" + 
-        "Headers:     #{headers.inspect}\n" +  
-        "Request:     #{request.inspect}" 
+        "Params:      \#{params.inspect}\n" + 
+        "Headers:     \#{headers.inspect}\n" +  
+        "Request:     \#{request.inspect}" 
       end
     RUBY
   end
