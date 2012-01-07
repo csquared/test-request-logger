@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.require
 require 'sinatra/base'
 
-#use Rack::CgiProxy, ENV['REQUEST_LOGGER_URL']
+use Rack::CgiProxy, ENV['REQUEST_LOGGER_URL'] if ENV['REQUEST_LOGGER_URL']
 
 class RequestIntrospector < Sinatra::Base
   # show ALL the methods!
